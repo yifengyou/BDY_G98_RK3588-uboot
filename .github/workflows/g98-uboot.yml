@@ -81,56 +81,10 @@ jobs:
           body: |
             # 彼度云 G98 SPI U-Boot 镜像
 
-            🚨 **注意**：仅支持有SPI Nor Flash，没有EMMC的设备
+            G98的SPI和EMMC存在引脚冲突，强烈建议选择其中之一作为引导使用。默认原厂不带EMMC，仅SPI。
 
-            ## 适配进展与特性
-
-            | 模块 | 状态 | 说明 |
-            | :--- | :---: | :--- |
-            | **SATA / SCSI** | ✅ | 可正常识别 SATA/SCSI 存储设备并引导 |
-            | **NVMe** | ✅ | 双 M.2 NVMe 插槽均可识别并引导 |
-            | **USB 3.0** | ✅ | 两个 USB 3.0 端口均工作正常 |
-            | **eMMC** | ❌ |不识别、不支持、默认禁用 |
-            | **启动配置** | ✅ | 自动扫描 `extlinux.conf` 与 `boot.scr`（Distro Boot） |
-            | **存储后端切换** | ✅ | 支持 NVMe / SATA / SPI Flash 后端存储切换 |
-            | **常用命令** | ✅ | 支持 `rbrom`、`sf`、`scsi`、`nvme`、`mmc` 等调试命令 |
-            | **2.5G 网口** | ❌ | RTL8125 暂不支持，网络功能不可用 |
-            | **千兆网口** | ❌ | YT9215 驱动未适配，网络功能不可用 |
-
-
-            🚨 **注意**：暂不支持EMMC，没有测试条件。不支持EMMC，默认禁用。
-            🚨 **注意**：当前版本 **不支持任何有线网络**，无法使用 TFTP/NFS 启动或 U-Boot 网络命令。如需网络功能，请等待后续驱动适配。
-
-            ## 刷机指引
-
-            请参看 [刷机前必看](https://github.com/yifengyou/BDY_G98_RK3588-uboot/blob/kdev/README.md)
-
-            ## 默认引导顺序
-
-            ```
-            USB → NVMe → SATA(SCSI)
-            ```
-
-            对每个存储设备依次执行以下搜索流程，任一命中即启动；未命中则自动回退至下一设备。**全部失败后进入Loader模式**。
-
-            ### 搜索策略
-
-            | 优先级 | 配置文件 | 搜索路径 |
-            | :---: | :--- | :--- |
-            | 1 | `extlinux.conf` | `/boot/extlinux/extlinux.conf` → `/extlinux/extlinux.conf` → `/extlinux.conf` |
-            | 2 | `boot.scr` | `/boot/boot.scr` → `/boot.scr` |
-
-            - **分区范围**：仅搜索设备的 **分区 1** 和 **分区 2**
-            - **设备遍历**：每类设备尝试 `devnum 0` 和 `devnum 1`
-            - **匹配逻辑**：先 extlinux 后 boot.scr；extlinux 使用 `sysboot` 解析，boot.scr 使用 `source` 执行
-
-            ## 适配信息
-
-            | 项目 | 版本 / 来源 |
-            | :--- | :--- |
-            | U-Boot 基线 | [rockchip-linux/u-boot](https://github.com/rockchip-linux/u-boot) 2017.09 |
-            | 烧录工具 | RKDevTool Release v3.37 |
-            | 二进制固件 | Rockchip SDK 6.1 rkbin |
+            * 如果是**SPI引导**，请查看使用说明：<https://github.com/yifengyou/BDY_G98_RK3588/blob/master/docs/%E5%88%B7%E6%9C%BA%E6%8C%87%E5%BC%95/spi_recovery.md>
+            * 如果是**EMMC引导**，请查看使用说明：<https://github.com/yifengyou/BDY_G98_RK3588/blob/master/docs/%E5%88%B7%E6%9C%BA%E6%8C%87%E5%BC%95/spi_recovery.md>
 
             ## 免责声明
 
