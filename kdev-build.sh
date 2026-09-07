@@ -8,9 +8,11 @@ mkdir -p output
 
 # only spi
 rm -f uboot.img arch/arm/dts/rk3588-evb.dtb
+sed -i "s#BYD G98 Compiled By yifengyou.*#BYD G98 Compiled By yifengyou v$(date +%Y.%m.%d-%H:%M:%S)\";#" only-spi/rk3588-evb.dts
 cp -a only-spi/rk3588-evb.dts arch/arm/dts/rk3588-evb.dts
 cp -a only-spi/rk3588_defconfig configs/rk3588_defconfig
 cp -a only-spi/spl.c common/spl/spl.c
+
 ./make.sh rk3588
 
 dtc -I dtb -O dts arch/arm/dts/rk3588-evb.dtb -o only-spi/g98-uboot.dts
@@ -27,6 +29,7 @@ ls -alh output/uboot-g98_only-spi.img
 
 # only emmc
 rm -f uboot.img arch/arm/dts/rk3588-evb.dtb
+sed -i "s#BYD G98 Compiled By yifengyou.*#BYD G98 Compiled By yifengyou v$(date +%Y.%m.%d-%H:%M:%S)\";#" only-emmc/rk3588-evb.dts
 cp -a only-emmc/rk3588-evb.dts arch/arm/dts/rk3588-evb.dts
 cp -a only-emmc/rk3588_defconfig configs/rk3588_defconfig
 cp -a only-emmc/spl.c common/spl/spl.c

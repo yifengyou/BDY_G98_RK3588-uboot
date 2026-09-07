@@ -10,7 +10,7 @@
 #include <dt-bindings/input/input.h>
 
 / {
-	model = "BYD G98 Compiled By yifengyou v20260901";
+	model = "BYD G98 Compiled By yifengyou v2026.09.07-14:44:01";
 	compatible = "rockchip,rk3588-evb", "rockchip,rk3588";
 
 	chosen {

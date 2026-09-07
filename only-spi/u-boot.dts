@@ -1,20 +1,20 @@
 /dts-v1/;
 // magic:		0xd00dfeed
-// totalsize:		0x603b (24635)
+// totalsize:		0x6047 (24647)
 // off_dt_struct:	0x38
-// off_dt_strings:	0x5844
+// off_dt_strings:	0x5850
 // off_mem_rsvmap:	0x28
 // version:		17
 // last_comp_version:	16
 // boot_cpuid_phys:	0x0
 // size_dt_strings:	0x7f7
-// size_dt_struct:	0x580c
+// size_dt_struct:	0x5818
 
 / {
     compatible = "rockchip,rk3588-evb", "rockchip,rk3588";
     #address-cells = <0x00000002>;
     #size-cells = <0x00000002>;
-    model = "BYD G98 Compiled By yifengyou v20260901";
+    model = "BYD G98 Compiled By yifengyou v2026.09.07-14:44:01";
     aliases {
         ethernet1 = "/pcie@fe170000";
         serial2 = "/serial@feb50000";
